@@ -204,7 +204,7 @@ ${selectedSize}
 
 شكراً لكم`;
 
-const phone="966500000000";
+const phone="96680923866";
 
 window.open(
 
