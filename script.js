@@ -316,21 +316,25 @@ observer.observe(section);
 
 });
 
-document.getElementById("orderForm").addEventListener("submit", function(e){
+const form = document.getElementById("orderForm");
 
-    e.preventDefault();
+if(form){
 
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-    const city = document.getElementById("city").value;
-    const size = document.getElementById("size").value;
-    const color = document.getElementById("color").value;
-    const qty = document.getElementById("qty").value;
-    const notes = document.getElementById("notes").value;
+form.addEventListener("submit", function(e){
 
-    const product = "بنطال رياضي نسائي";
+e.preventDefault();
 
-    const message =
+const name = document.getElementById("name").value;
+const phone = document.getElementById("phone").value;
+const city = document.getElementById("city").value;
+const size = document.getElementById("size").value;
+const color = document.getElementById("color").value;
+const qty = document.getElementById("qty").value;
+const notes = document.getElementById("notes").value;
+
+const product = "بنطال رياضي نسائي";
+
+const message =
 `طلب جديد
 
 المنتج: ${product}
@@ -353,9 +357,11 @@ ${notes}
 رابط المنتج:
 ${window.location.href}`;
 
-    const url =
-"https://wa.me/966580923866?text=" + encodeURIComponent(message);
-
-    window.open(url,"_blank");
+window.open(
+"https://wa.me/966580923866?text=" + encodeURIComponent(message),
+"_blank"
+);
 
 });
+
+}
