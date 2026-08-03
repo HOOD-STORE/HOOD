@@ -1325,3 +1325,48 @@ transform:scale(1.04);
 box-shadow:0 18px 40px rgba(0,0,0,.15);
 
 }
+
+/* =========================
+   Mobile Responsive
+========================= */
+
+@media (max-width: 768px) {
+
+    .hero-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .gallery {
+        order: 1;
+    }
+
+    .product-info {
+        order: 2;
+    }
+
+    .main-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .container {
+        width: 95%;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .buy-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+    }
+
+}
