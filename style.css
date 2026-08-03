@@ -1,1838 +1,317 @@
-/*==========================================================
+/* ==========================================
 HOOD STORE
-File Name : style.css
-Version   : 2.0
-Developer : Faris
-
-============================================================
-
-محتويات الملف:
-
-01- استيراد الخطوط
-02- إعادة ضبط المتصفح (Reset)
-03- إعدادات الصفحة العامة
-04- العناصر الأساسية
-05- الحاوية الرئيسية (Container)
-06- الشريط العلوي (Top Bar)
-07- شريط التنقل (Navbar)
-08- قسم المنتج الرئيسي (Hero)
-09- معرض الصور
-10- معلومات المنتج
-11- السعر
-12- زر الشراء
-13- الألوان والمقاسات
-14- المميزات
-15- آراء العملاء
-16- نموذج الطلب
-17- الأسئلة الشائعة
-18- النشرة البريدية
-19- التذييل
-20- زر واتساب العائم
-21- الاستجابة للجوال
-
-==========================================================*/
+Version 1.0
+========================================== */
 
 
+/*==========================================
+CHANGE MAIN IMAGE
+==========================================*/
 
-/*==========================================================
-01 - GOOGLE FONT
-============================================================
+const thumbs=document.querySelectorAll(".thumbs img");
 
-الوظيفة:
-استيراد خط Cairo من Google Fonts.
+const mainImage=document.getElementById("mainImage");
 
-يمكنك تغييره إلى أي خط آخر إذا أردت.
+thumbs.forEach(function(img){
 
-==========================================================*/
+img.addEventListener("click",function(){
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap');
+mainImage.src=this.src;
+
+});
+
+});
 
 
+/*==========================================
+FAQ
+==========================================*/
 
-/*==========================================================
-02 - RESET
-============================================================
+const questions=document.querySelectorAll(".faq-question");
 
-الوظيفة:
-إزالة الهوامش والإعدادات الافتراضية التي يضيفها المتصفح.
+questions.forEach(function(question){
 
-يفضل عدم تعديل هذا القسم.
+question.addEventListener("click",function(){
 
-==========================================================*/
+const answer=this.nextElementSibling;
 
-*{
+if(answer.style.display==="block"){
 
-    margin:0;
+answer.style.display="none";
 
-    padding:0;
+}else{
 
-    box-sizing:border-box;
+answer.style.display="block";
 
 }
 
+});
+
+});
 
 
-/*==========================================================
-03 - PAGE SETTINGS
-============================================================
+/*==========================================
+SIZE
+==========================================*/
 
-الوظيفة:
-إعدادات الصفحة العامة.
+const sizes=document.querySelectorAll(".sizes button");
 
-==========================================================*/
+sizes.forEach(function(btn){
 
-html{
+btn.addEventListener("click",function(){
 
-    scroll-behavior:smooth;
+sizes.forEach(function(item){
+
+item.classList.remove("active");
+
+});
+
+this.classList.add("active");
+
+});
+
+});
+
+
+/*==========================================
+COLOR
+==========================================*/
+
+const colors=document.querySelectorAll(".color");
+
+colors.forEach(function(btn){
+
+btn.addEventListener("click",function(){
+
+colors.forEach(function(item){
+
+item.classList.remove("active");
+
+});
+
+this.classList.add("active");
+
+});
+
+});
+
+
+
+
+/*==========================================
+COUNTDOWN TIMER
+==========================================*/
+
+let hours = 12;
+let minutes = 0;
+let seconds = 0;
+
+const timer = document.getElementById("timer");
+
+function updateTimer() {
+
+    if (!timer) return;
+
+    if (seconds === 0) {
+
+        if (minutes === 0) {
+
+            if (hours === 0) {
+
+                hours = 12;
+                minutes = 0;
+                seconds = 0;
+
+            } else {
+
+                hours--;
+                minutes = 59;
+                seconds = 59;
+
+            }
+
+        } else {
+
+            minutes--;
+            seconds = 59;
+
+        }
+
+    } else {
+
+        seconds--;
+
+    }
+
+    timer.innerHTML =
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+
+}
+
+setInterval(updateTimer,1000);
+
+
+/*==========================================
+WHATSAPP ORDER
+==========================================*/
+
+const orderBtn=document.getElementById("whatsappOrder");
+
+if(orderBtn){
+
+orderBtn.addEventListener("click",function(e){
+
+e.preventDefault();
+
+const size=document.querySelector(".sizes .active");
+
+const color=document.querySelector(".color.active");
+
+let selectedSize="غير محدد";
+let selectedColor="غير محدد";
+
+if(size){
+
+selectedSize=size.innerText;
 
 }
 
-body{
+if(color){
 
-    font-family:'Cairo',sans-serif;
-
-    direction:rtl;
-
-    background:#f7f7f7;
-
-    color:#222;
-
-    overflow-x:hidden;
+selectedColor=color.dataset.color;
 
 }
 
+const message=
 
+`السلام عليكم
 
-/*==========================================================
-04 - BASIC ELEMENTS
-============================================================
+أرغب بطلب المنتج
 
-الوظيفة:
-تنسيق العناصر الأساسية المستخدمة في جميع أجزاء الموقع.
+المنتج:
+بنطال رياضي نسائي
 
-==========================================================*/
-
-/* الروابط */
-
-a{
-
-    text-decoration:none;
-
-    color:inherit;
-
-}
-
-
-/* الصور */
-
-img{
-
-    width:100%;
-
-    display:block;
-
-}
-
-
-/* القوائم */
-
-ul{
-
-    list-style:none;
-
-}
-
-
-/* الأزرار */
-
-button{
-
-    font-family:'Cairo',sans-serif;
-
-    cursor:pointer;
-
-}
-
-
-
-/*==========================================================
-05 - CONTAINER
-============================================================
-
-الوظيفة:
-الحاوية الرئيسية للموقع.
-
-تستخدم في جميع الأقسام.
-
-يمكنك تعديل:
-
-عرض الموقع.
-
-==========================================================*/
-
-.container{
-
-    width:92%;
-
-    max-width:1400px;
-
-    margin:auto;
-
-}
-/*==========================================================
-06 - TOP BAR
-============================================================
-
-الوظيفة:
-عرض شريط أعلى الموقع يحتوي على:
-
-✔ الشحن.
-✔ الضمان.
-✔ وسائل الدفع.
-✔ أي إشعارات سريعة.
-
-============================================================
-
-يمكنك التعديل على:
-
-✔ لون الخلفية.
-
-✔ لون الخط.
-
-✔ ارتفاع الشريط.
-
-✔ حجم الخط.
-
-✔ المسافة بين العناصر.
-
-============================================================
-
-يعتمد على:
-
-HTML
-
-<header class="top-bar">
-
-<div class="container">
-
-<div class="top-right">
-
-<div class="top-left">
-
-==========================================================*/
-
-
-/*==================================================
-الشريط العلوي
-==================================================*/
-
-.top-bar{
-
-    background:#111;
-
-    color:#fff;
-
-    height:45px;
-
-    display:flex;
-
-    align-items:center;
-
-    font-size:14px;
-
-}
-
-
-/*==================================================
-تنسيق محتويات الشريط
-==================================================*/
-
-.top-bar .container{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-}
-
-
-/*==================================================
-القسم الأيمن والقسم الأيسر
-==================================================*/
-
-.top-left,
-.top-right{
-
-    display:flex;
-
-    gap:20px;
-
-}
-
-/*==========================================================
-07 - NAVBAR (شريط التنقل)
-============================================================
-
-الوظيفة:
-عرض شريط التنقل الرئيسي للموقع.
-
-يحتوي على:
-
-✔ شعار المتجر.
-✔ روابط التنقل.
-✔ أيقونات البحث والسلة.
-
-يبقى ثابتاً أعلى الصفحة أثناء التمرير.
-
-============================================================
-
-يمكنك التعديل على:
-
-✔ لون الخلفية.
-✔ ارتفاع الشريط.
-✔ حجم الشعار.
-✔ حجم الروابط.
-✔ المسافة بين الروابط.
-✔ لون الروابط عند المرور بالماوس.
-
-============================================================
-
-يعتمد على:
-
-<nav class="navbar">
-
-<div class="container">
-
-<div class="logo">
-
-<ul class="menu">
-
-<div class="icons">
-
-==========================================================*/
-
-
-/*==================================================
-الشريط الرئيسي
-==================================================*/
-
-.navbar{
-
-    background:#fff;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:999;
-
-    box-shadow:0 3px 12px rgba(0,0,0,.08);
-
-}
-
-
-/*==================================================
-ترتيب عناصر شريط التنقل
-==================================================*/
-
-.navbar .container{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    height:85px;
-
-}
-
-
-/*==================================================
-شعار المتجر
-==================================================*/
-
-.logo{
-
-    font-size:38px;
-
-    font-weight:800;
-
-    letter-spacing:8px;
-
-}
-
-
-/*==================================================
-قائمة التنقل
-==================================================*/
-
-.menu{
-
-    display:flex;
-
-    gap:35px;
-
-}
-
-
-/*==================================================
-روابط القائمة
-==================================================*/
-
-.menu a{
-
-    font-size:17px;
-
-    font-weight:600;
-
-    transition:.3s;
-
-}
-
-
-/*==================================================
-تأثير المرور على الرابط
-==================================================*/
-
-.menu a:hover{
-
-    color:#8b5e3c;
-
-}
-
-
-/*==================================================
-أيقونات البحث والسلة
-==================================================*/
-
-.icons{
-
-    display:flex;
-
-    gap:18px;
-
-    font-size:22px;
-
-}
-
-/*==========================================================
-08 - HERO SECTION (القسم الرئيسي)
-============================================================
-
-الوظيفة:
-عرض المنتج في أول الصفحة.
-
-يتكون من:
-
-✔ معرض الصور.
-✔ الصورة الرئيسية.
-✔ معلومات المنتج.
-
-============================================================
-
-يعتمد على:
-
-<section class="hero">
-
-<div class="hero-grid">
-
-<div class="gallery">
-
-<div class="product-info">
-
-==========================================================*/
-
-
-/*==================================================
-القسم الرئيسي
-==================================================*/
-
-.hero{
-
-    padding:60px 0;
-
-}
-
-
-/*==================================================
-تقسيم الصفحة إلى عمودين
-
-يمين:
-معلومات المنتج
-
-يسار:
-الصور
-
-في الجوال يتحول إلى عمود واحد.
-
-==================================================*/
-
-.hero-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    align-items:center;
-
-    gap:40px;
-
-}
-
-
-
-/*==========================================================
-09 - PRODUCT GALLERY (معرض الصور)
-============================================================
-
-الوظيفة:
-عرض الصور المصغرة والصورة الرئيسية.
-
-==========================================================*/
-
-
-/*==================================================
-حاوية معرض الصور
-==================================================*/
-
-.gallery{
-
-    display:grid;
-
-    grid-template-columns:100px 1fr;
-
-    gap:20px;
-
-}
-
-
-/*==================================================
-الصور المصغرة
-
-يمكن تغيير:
-
-عدد الصور.
-
-عرض العمود.
-
-==================================================*/
-
-.thumbs{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:15px;
-
-}
-
-
-/*==================================================
-تنسيق الصور المصغرة
-==================================================*/
-
-.thumbs img{
-
-    border-radius:12px;
-
-    border:2px solid #ddd;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-
-/*==================================================
-عند المرور بالماوس
-==================================================*/
-
-.thumbs img:hover{
-
-    transform:scale(1.05);
-
-    border-color:#8b5e3c;
-
-}
-
-
-/*==================================================
-الصورة الرئيسية
-
-يمكن تغيير:
-
-لون الخلفية.
-
-حجم الحواف.
-
-الظل.
-
-==================================================*/
-
-.main-image{
-
-    background:#fff;
-
-    border-radius:25px;
-
-    padding:25px;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-}
-/*==========================================================
-10 - PRODUCT INFORMATION (معلومات المنتج)
-============================================================
-
-الوظيفة:
-عرض جميع معلومات المنتج بجانب الصور.
-
-يشمل:
-
-✔ شارة العرض.
-✔ اسم المنتج.
-✔ الوصف المختصر.
-✔ التقييم.
-✔ المميزات.
-
-============================================================
-
-يمكنك التعديل على:
-
-✔ اسم المنتج.
-✔ حجم الخط.
-✔ لون النصوص.
-✔ لون شارة العرض.
-✔ عدد المميزات.
-
-============================================================
-
-يعتمد على:
-
-<div class="product-info">
-
-<div class="offer">
-
-<h1>
-
-<p class="subtitle">
-
-<div class="rating">
-
-<div class="features">
-
-==========================================================*/
-
-
-/*==================================================
-حاوية معلومات المنتج
-==================================================*/
-
-.product-info{
-
-    width:100%;
-
-    max-width:100%;
-
-}
-
-
-/*==================================================
-شارة العرض
-==================================================*/
-
-.offer{
-
-    width:max-content;
-
-    background:#fff4e6;
-
-    color:#d35400;
-
-    padding:10px 20px;
-
-    border-radius:30px;
-
-    font-weight:700;
-
-}
-
-
-/*==================================================
-اسم المنتج
-==================================================*/
-
-.product-info h1{
-
-    font-size:48px;
-
-    font-weight:800;
-
-    line-height:1.3;
-
-}
-
-
-/*==================================================
-الوصف المختصر
-==================================================*/
-
-.subtitle{
-
-    color:#666;
-
-    font-size:20px;
-
-}
-
-
-/*==================================================
-التقييم
-==================================================*/
-
-.rating{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    font-size:20px;
-
-    color:#f39c12;
-
-}
-
-
-/*==================================================
-رقم التقييم
-==================================================*/
-
-.rating span{
-
-    color:#222;
-
-    font-weight:bold;
-
-}
-
-
-/*==================================================
-مميزات المنتج
-==================================================*/
-
-.features{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:15px;
-
-}
-
-
-/*==================================================
-بطاقة الميزة
-==================================================*/
-
-.features div{
-
-    background:#fff;
-
-    padding:15px;
-
-    border-radius:15px;
-
-    font-weight:600;
-
-    box-shadow:0 4px 10px rgba(0,0,0,.06);
-
-}
-
-/*==========================================================
-11 - PRICE CARD (بطاقة السعر)
-============================================================
-
-الوظيفة:
-عرض معلومات السعر والعرض الحالي.
-
-تتكون البطاقة من:
-
-✔ السعر القديم.
-✔ نسبة الخصم.
-✔ السعر الحالي.
-✔ عداد انتهاء العرض.
-
-============================================================
-
-يمكنك التعديل على:
-
-✔ لون البطاقة.
-✔ لون السعر.
-✔ لون الخصم.
-✔ حجم السعر.
-✔ الظل.
-✔ الحواف.
-
-============================================================
-
-يعتمد على:
-
-<div class="price-card">
-
-<div class="price-top">
-
-<span class="old-price">
-
-<span class="discount">
-
-<h2>
-
-<div class="timer">
-
-==========================================================*/
-
-
-/*==================================================
-بطاقة السعر
-==================================================*/
-
-.price-card{
-
-    background:#fff;
-
-    padding:30px;
-
-    border-radius:20px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-
-}
-
-
-/*==================================================
-السطر العلوي
-
-يحتوي على:
-
-✔ السعر القديم
-
-✔ نسبة الخصم
-
-==================================================*/
-
-.price-top{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:15px;
-
-}
-
-
-/*==================================================
-السعر قبل الخصم
-
-يظهر عليه خط في المنتصف.
-
-==================================================*/
-
-.old-price{
-
-    text-decoration:line-through;
-
-    color:#888;
-
-    font-size:22px;
-
-}
-
-
-/*==================================================
-شارة الخصم
-
-مثال:
-
-خصم 46%
-
-==================================================*/
-
-.discount{
-
-    background:#d32f2f;
-
-    color:#fff;
-
-    padding:6px 12px;
-
-    border-radius:20px;
-
-    font-size:14px;
-
-}
-
-
-/*==================================================
-السعر الحالي
-
-مثال:
-
+السعر:
 32 ريال
 
-==================================================*/
+اللون:
+${selectedColor}
 
-.price-card h2{
+المقاس:
+${selectedSize}
 
-    font-size:50px;
+شكراً لكم`;
 
-    color:#8b5e3c;
+const phone="966580923866";
 
-}
-
-
-/*==================================================
-عداد انتهاء العرض
-
-الوقت يتم تحديثه بواسطة JavaScript.
-
-==================================================*/
-
-.timer{
-
-    margin-top:15px;
-
-    font-size:18px;
-
-    color:#666;
-
-}
-/* ==========================================
-REVIEWS
-========================================== */
-
-.reviews{
-
-    padding:80px 0;
-
-    background:#f7f7f7;
-
-}
-
-.reviews h2{
-
-    text-align:center;
-
-    font-size:38px;
-
-    margin-bottom:50px;
-
-}
-
-.reviews-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:30px;
-
-}
-
-.review-card{
-
-    background:#fff;
-
-    border-radius:20px;
-
-    padding:30px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-
-    transition:.3s;
-
-}
-
-.review-card:hover{
-
-    transform:translateY(-8px);
-
-}
-
-.review-card .stars{
-
-    color:#f5b301;
-
-    font-size:24px;
-
-    margin-bottom:15px;
-
-}
-
-.review-card p{
-
-    line-height:1.8;
-
-    color:#555;
-
-}
-
-.review-card h4{
-
-    margin-top:20px;
-
-    color:#8b5e3c;
-
-}
-
-/* ==========================================
-ORDER
-========================================== */
-
-.order-section{
-
-    padding:80px 0;
-
-    background:#fff;
-
-}
-
-.order-section h2{
-
-    text-align:center;
-
-    margin-bottom:40px;
-
-    font-size:40px;
-
-}
-
-.order-section form{
-
-    max-width:900px;
-
-    margin:auto;
-
-}
-
-.row{
-
-    display:flex;
-
-    gap:20px;
-
-    margin-bottom:20px;
-
-}
-
-.row input,
-.row select,
-textarea{
-
-    width:100%;
-
-    padding:18px;
-
-    border:1px solid #ddd;
-
-    border-radius:12px;
-
-    font-size:17px;
-
-    outline:none;
-
-}
-
-textarea{
-
-    height:140px;
-
-    resize:none;
-
-    margin-bottom:20px;
-
-}
-
-.submit-btn{
-
-    width:100%;
-
-    background:#25D366;
-
-    color:#fff;
-
-    border:none;
-
-    padding:20px;
-
-    border-radius:12px;
-
-    font-size:22px;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-.submit-btn:hover{
-
-    background:#1da851;
-
-}
-
-/* ==========================================
-FAQ
-========================================== */
-
-.faq{
-
-    padding:80px 0;
-
-    background:#f8f8f8;
-
-}
-
-.faq h2{
-
-    text-align:center;
-
-    font-size:40px;
-
-    margin-bottom:40px;
-
-}
-
-.faq-item{
-
-    max-width:900px;
-
-    margin:15px auto;
-
-    background:#fff;
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.08);
-
-}
-
-.faq-question{
-
-    width:100%;
-
-    border:none;
-
-    background:#fff;
-
-    padding:22px;
-
-    text-align:right;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.faq-question:hover{
-
-    background:#f3f3f3;
-
-}
-
-.faq-answer{
-
-    display:none;
-
-    padding:0 22px 22px;
-
-    color:#555;
-
-    line-height:1.8;
-
-}
-
-/* ==========================================
-NEWSLETTER
-========================================== */
-
-.newsletter{
-
-    background:#8b5e3c;
-
-    color:#fff;
-
-    padding:70px 0;
-
-    text-align:center;
-
-}
-
-.newsletter h2{
-
-    font-size:36px;
-
-    margin-bottom:25px;
-
-}
-
-.newsletter form{
-
-    max-width:700px;
-
-    margin:auto;
-
-    display:flex;
-
-    gap:15px;
-
-}
-
-.newsletter input{
-
-    flex:1;
-
-    padding:18px;
-
-    border:none;
-
-    border-radius:10px;
-
-    font-size:17px;
-
-}
-
-.newsletter button{
-
-    border:none;
-
-    background:#111;
-
-    color:#fff;
+window.open(
 
-    padding:18px 35px;
+"https://wa.me/"+phone+
 
-    border-radius:10px;
+"?text="+encodeURIComponent(message),
 
-    font-size:18px;
+"_blank"
 
-    transition:.3s;
+);
 
-}
-
-.newsletter button:hover{
-
-    background:#000;
-
-}
-
-/* ==========================================
-FOOTER
-========================================== */
-
-footer{
-
-    background:#111;
-
-    color:#fff;
-
-    padding:70px 0;
-
-}
-
-.footer-grid{
-
-    display:grid;
-
-    grid-template-columns:2fr 1fr 1fr;
-
-    gap:50px;
-
-}
-
-footer h3{
-
-    margin-bottom:20px;
-
-    font-size:24px;
-
-}
-
-footer p{
-
-    line-height:2;
-
-    color:#ddd;
-
-}
-
-footer ul{
-
-    list-style:none;
-
-}
-
-footer ul li{
-
-    margin-bottom:15px;
-
-}
-
-footer ul li a{
-
-    color:#ddd;
-
-    transition:.3s;
-
-}
-
-footer ul li a:hover{
-
-    color:#fff;
-
-}
-
-/* ==========================================
-FLOATING WHATSAPP
-========================================== */
-
-.floating-whatsapp{
-
-    position:fixed;
-
-    bottom:25px;
-
-    left:25px;
-
-    width:65px;
-
-    height:65px;
-
-    background:#25D366;
-
-    color:#fff;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:34px;
-
-    border-radius:50%;
-
-    text-decoration:none;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-
-    transition:.3s;
-
-    z-index:9999;
-
-}
-
-.floating-whatsapp:hover{
-
-    transform:scale(1.12);
-
-}
-
-.buy-btn i{
-    margin-left:10px;
-    font-size:24px;
-}
-
-/* ==========================================
-BUY BUTTON
-========================================== */
-
-.buy-btn{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:10px;
-
-    background:#25D366;
-
-    color:#fff;
-
-    padding:18px;
-
-    border-radius:15px;
-
-    font-size:22px;
-
-    font-weight:700;
-
-    transition:.3s;
-
-}
-
-.buy-btn:hover{
-
-    background:#1fa851;
-
-    transform:translateY(-3px);
-
-    box-shadow:0 10px 20px rgba(0,0,0,.15);
-
-}
-
-.buy-btn i{
+});
 
-    font-size:24px;
-
-}
-
-
-/* ==========================================
-RESPONSIVE
-========================================== */
-
-@media(max-width:992px){
-
-.hero-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.gallery{
-
-grid-template-columns:1fr;
-
-}
-
-.thumbs{
-
-flex-direction:row;
-
-justify-content:center;
-
-}
-
-.advantages .container{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-
-.reviews-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.gallery-grid{
-
-grid-template-columns:repeat(2,1fr);
-
-}
-.footer-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.row{
-
-flex-direction:column;
-
-}
-
-.newsletter form{
-
-flex-direction:column;
-
-}
-
-}
-
-
-
-@media(max-width:768px){
-
-.menu{
-
-display:none;
-
-}
-
-.logo{
-
-font-size:28px;
-
-letter-spacing:5px;
-
-}
-
-
-.gallery-grid{
-
-grid-template-columns:1fr;
-
-}
-
-
-.product-info h1{
-
-font-size:34px;
-
-}
-
-.price-card h2{
-
-font-size:40px;
-
-}
-
-.buy-btn{
-
-font-size:20px;
-
-}
-
-.advantages .container{
-
-grid-template-columns:1fr;
-
-}
-
-.features{
-
-grid-template-columns:1fr;
-
-}
-
-.newsletter h2{
-
-font-size:28px;
-
-}
-
-.faq h2{
-
-font-size:30px;
-
-}
-
-.reviews h2{
-
-font-size:30px;
-
 }
 
-}
 
 /*==========================================
-TRUST BAR
+SCROLL TO TOP
 ==========================================*/
 
-.trust-bar{
+const topButton=document.createElement("button");
 
-display:grid;
+topButton.innerHTML="↑";
 
-grid-template-columns:repeat(4,1fr);
+document.body.appendChild(topButton);
 
-gap:15px;
+topButton.style.position="fixed";
 
-margin-top:35px;
+topButton.style.right="25px";
 
-}
+topButton.style.bottom="25px";
 
-.trust-item{
+topButton.style.width="55px";
 
-background:#fff;
+topButton.style.height="55px";
 
-padding:20px;
+topButton.style.border="none";
 
-text-align:center;
+topButton.style.borderRadius="50%";
 
-border-radius:18px;
+topButton.style.background="#111";
 
-box-shadow:0 6px 20px rgba(0,0,0,.08);
+topButton.style.color="#fff";
 
-transition:.3s;
+topButton.style.fontSize="22px";
 
-}
+topButton.style.cursor="pointer";
 
-.trust-item:hover{
+topButton.style.display="none";
 
-transform:translateY(-6px);
+topButton.style.zIndex="9999";
 
-}
+window.addEventListener("scroll",function(){
 
-.trust-item{
+if(window.scrollY>400){
 
-font-size:34px;
+topButton.style.display="block";
 
-}
+}else{
 
-.trust-item p{
-
-margin-top:12px;
-
-font-weight:700;
-
-font-size:15px;
+topButton.style.display="none";
 
 }
+
+});
+
+topButton.onclick=function(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+};
+
 
 /*==========================================
-PRODUCT GALLERY
+FADE ANIMATION
 ==========================================*/
 
-.product-gallery{
+const observer=new IntersectionObserver(function(entries){
 
-padding:90px 0;
+entries.forEach(function(entry){
 
-background:#ffffff;
+if(entry.isIntersecting){
 
-}
+entry.target.style.opacity="1";
 
-.product-gallery h2{
-
-text-align:center;
-
-font-size:42px;
-
-margin-bottom:15px;
+entry.target.style.transform="translateY(0)";
 
 }
 
-.gallery-text{
+});
 
-text-align:center;
+});
 
-color:#777;
+document.querySelectorAll("section").forEach(function(section){
 
-margin-bottom:45px;
+section.style.opacity="0";
 
-font-size:18px;
+section.style.transform="translateY(60px)";
 
-}
+section.style.transition="1s";
 
-.gallery-grid{
+observer.observe(section);
 
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:25px;
-
-}
-
-.gallery-grid img{
-
-width:100%;
-
-border-radius:18px;
-
-cursor:pointer;
-
-transition:.4s;
-
-box-shadow:0 8px 25px rgba(0,0,0,.08);
-
-}
-
-.gallery-grid img:hover{
-
-transform:scale(1.04);
-
-box-shadow:0 18px 40px rgba(0,0,0,.15);
-
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width:768px){
-
-.container{
-    width:94%;
-}
-
-.hero{
-    padding:20px 0;
-}
-
-.hero-grid{
-    display:flex;
-    flex-direction:column;
-    gap:25px;
-}
-
-.gallery{
-    display:flex;
-    flex-direction:column;
-}
-
-.thumbs{
-    flex-direction:row;
-    justify-content:center;
-    gap:10px;
-}
-
-.thumbs img{
-    width:70px;
-}
-
-.main-image{
-    padding:12px;
-}
-
-.product-info{
-    max-width:100%;
-}
-
-.product-info h1{
-    font-size:30px;
-    text-align:center;
-}
-
-.subtitle{
-    text-align:center;
-    font-size:18px;
-}
-
-.rating{
-    justify-content:center;
-}
-
-.features{
-    grid-template-columns:1fr;
-}
-
-.price-card{
-    padding:20px;
-}
-
-.price-card h2{
-    font-size:38px;
-}
-
-.buy-btn{
-    width:100%;
-    font-size:20px;
-}
-
-.trust-bar{
-    grid-template-columns:1fr 1fr;
-}
-
-.gallery-grid{
-    grid-template-columns:1fr;
-}
-
-.advantages .container{
-    grid-template-columns:1fr;
-}
-
-.reviews-grid{
-    grid-template-columns:1fr;
-}
-
-.footer-grid{
-    grid-template-columns:1fr;
-}
-
-.row{
-    flex-direction:column;
-}
-
-.newsletter form{
-    flex-direction:column;
-}
-
-.menu{
-    display:none;
-}
-
-.logo{
-    font-size:26px;
-}
-
-}
-
-
-.why-product{
-
-    padding:80px 0;
-
-    background:#fff;
-
-}
-
-.why-product h2{
-
-    text-align:center;
-
-    font-size:38px;
-
-    margin-bottom:40px;
-
-}
-
-.why-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:20px;
-
-}
-
-.why-card{
-
-    background:#fff;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    text-align:center;
-
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
-
-    font-size:20px;
-
-    font-weight:bold;
-
-}
-
-@media(max-width:768px){
-
-.why-grid{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
-
-
-
+});
