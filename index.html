@@ -494,162 +494,53 @@ TRUST BAR
 
 </div>
 
-<form>
+<form id="orderForm">
 
 <div class="row">
-
-<input
-
-type="text"
-
-placeholder="الاسم الكامل"
-
-required>
-
-<input
-
-type="tel"
-
-placeholder="رقم الجوال"
-
-required>
-
+<input type="text" id="name" placeholder="الاسم الكامل" required>
+<input type="tel" id="phone" placeholder="رقم الجوال" required>
 </div>
 
 <div class="row">
-
-<select>
-
-<option>
-
-اختر المدينة
-
-</option>
-
-<option>
-
-الرياض
-
-</option>
-
-<option>
-
-جدة
-
-</option>
-
-<option>
-
-الدمام
-
-</option>
-
-<option>
-
-الخبر
-
-</option>
-
-<option>
-
-مكة
-
-</option>
-
+<select id="city">
+<option>اختر المدينة</option>
+<option>الرياض</option>
+<option>جدة</option>
+<option>الدمام</option>
+<option>الخبر</option>
+<option>مكة</option>
 </select>
 
-<select>
-
-<option>
-
-اختر المقاس
-
-</option>
-
+<select id="size">
+<option>اختر المقاس</option>
 <option>S</option>
-
 <option>M</option>
-
 <option>L</option>
-
 <option>XL</option>
-
 <option>XXL</option>
-
 </select>
-
 </div>
 
 <div class="row">
-
-<select>
-
-<option>
-
-اختر اللون
-
-</option>
-
-<option>
-
-بني
-
-</option>
-
-<option>
-
-أسود
-
-</option>
-
-<option>
-
-رمادي
-
-</option>
-
-<option>
-
-بيج
-
-</option>
-
-<option>
-
-وردي
-
-</option>
-
+<select id="color">
+<option>اختر اللون</option>
+<option>بني</option>
+<option>أسود</option>
+<option>رمادي</option>
+<option>بيج</option>
+<option>وردي</option>
 </select>
 
-<input
-
-type="number"
-
-value="1"
-
-min="1">
-
+<input type="number" id="qty" value="1" min="1">
 </div>
 
-<textarea
+<textarea id="notes" placeholder="ملاحظات إضافية"></textarea>
 
-placeholder="ملاحظات إضافية">
-
-</textarea>
-
-<button
-
-type="submit"
-
-class="submit-btn">
-
-إرسال الطلب
-
+<button type="submit" class="submit-btn">
+إرسال الطلب عبر واتساب
 </button>
 
 </form>
-
 </div>
 
 </section>
