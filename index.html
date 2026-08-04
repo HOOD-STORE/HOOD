@@ -474,7 +474,7 @@ ORDER FORM
 
 <div class="row">
 <input type="text" id="name" placeholder="الاسم الكامل" required>
-<input type="tel" id="phone" placeholder="05xxxxxxxx" inputmode="numeric" required>
+<input type="tel" id="phone" placeholder="رقم الجوال" inputmode="numeric" required>
 </div>
 
 <div class="row">
@@ -511,7 +511,17 @@ ORDER FORM
 </div>
 
 <textarea id="notes" placeholder="ملاحظات إضافية"></textarea>
+<!-- ==========================================
+موقعي
+========================================== -->
+<button type="button" id="getLocation" class="submit-btn">
+📍 تحديد موقعي
+</button>
 
+<input type="hidden" id="locationLink">
+        <!-- ==========================================
+موقعي
+========================================== -->
 <button type="submit" class="submit-btn">
 إرسال الطلب عبر واتساب
 </button>
