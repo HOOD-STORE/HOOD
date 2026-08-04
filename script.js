@@ -379,34 +379,36 @@ if (locationBtn) {
     locationBtn.addEventListener("click", function () {
 
         if (!navigator.geolocation) {
-            alert("متصفحك لا يدعم تحديد الموقع.");
+            alert("متصفحك لا يدعم تحديد الموقع");
             return;
         }
 
-        locationBtn.innerHTML = "⏳ جاري تحديد الموقع...";
-
         navigator.geolocation.getCurrentPosition(
 
-            function (position) {
+            function(position) {
 
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
 
-                const map =
+                document.getElementById("locationLink").value =
                     "https://maps.google.com/?q=" + lat + "," + lng;
 
-                document.getElementById("locationLink").value = map;
-
-                locationBtn.innerHTML = "✅ تم تحديد الموقع";
+                alert("✅ تم تحديد الموقع بنجاح");
 
             },
 
-            function () {
+            function(error) {
 
-                alert("يرجى السماح بالوصول إلى الموقع.");
+                alert("❌ لم يتم السماح بالموقع");
 
-                locationBtn.innerHTML = "📍 تحديد موقعي";
+                console.log(error);
 
+            },
+
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
             }
 
         );
