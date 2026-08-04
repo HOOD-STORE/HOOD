@@ -75,23 +75,24 @@ button{
 
 }
 
-/* ==========================================
+/*============================
 TOP BAR
-========================================== */
+============================*/
 
 .top-bar{
 
     background:#111;
+    color:#fff;
 
-    color:white;
+    margin:12px auto 0;
 
-    height:45px;
+    border-radius:10px;
+
+    height:46px;
 
     display:flex;
 
     align-items:center;
-
-    font-size:14px;
 
 }
 
@@ -105,15 +106,35 @@ TOP BAR
 
 }
 
-.top-left,
-.top-right{
+.top-left{
 
     display:flex;
 
-    gap:20px;
+    gap:25px;
+
+    align-items:center;
+
+    font-size:14px;
+
+    font-weight:600;
 
 }
 
+.top-right{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.top-bar i{
+
+    color:#25D366;
+
+    margin-left:6px;
+
+}
 /* ==========================================
 NAVBAR
 ========================================== */
@@ -1320,7 +1341,6 @@ box-shadow:0 18px 40px rgba(0,0,0,.15);
 }
 
 /* ================= MOBILE ================= */
-
 @media (max-width:768px){
 
 .container{
@@ -1427,27 +1447,49 @@ box-shadow:0 18px 40px rgba(0,0,0,.15);
     font-size:26px;
 }
 
+/* ===== TOP BAR ===== */
+
+.top-bar{
+    height:auto;
+    padding:10px 0;
+    margin-top:10px;
 }
+
+.top-bar .container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    text-align:center;
+}
+
+.top-left{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    font-size:13px;
+}
+
+.top-right{
+    font-size:13px;
+}
+
+}
+
+/* ===== زر تحديد الموقع ===== */
+
 #getLocation{
-
-margin:22px 0 16px;
-
-background:#fff;
-
-color:#444;
-
-border:2px dashed #25D366;
-
-font-weight:700;
-
-transition:.3s;
-
+    margin:22px 0 16px;
+    background:#fff;
+    color:#444;
+    border:2px dashed #25D366;
+    font-weight:700;
+    transition:.3s;
 }
 
 #getLocation:hover{
-
-background:#25D366;
-
-color:#fff;
-
+    background:#25D366;
+    color:#fff;
 }
