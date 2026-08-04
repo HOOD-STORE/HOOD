@@ -323,6 +323,29 @@ if(form){
 form.addEventListener("submit", function(e){
 
 e.preventDefault();
+    const location = document.getElementById("locationLink").value;
+
+if (location === "") {
+
+    const ok = confirm(
+`⚠️ لم يتم تحديد موقع التسليم.
+
+لا توجد مشكلة، يمكنك إرسال موقع التسليم الصحيح داخل محادثة واتساب بعد إرسال الطلب.
+
+هل ترغب في متابعة إرسال الطلب؟`
+    );
+
+    if (!ok) {
+        return;
+    }
+
+}
+        );
+
+    });
+
+}
+
 
 const name = document.getElementById("name").value;
 const phone = document.getElementById("phone").value;
@@ -409,25 +432,3 @@ if (locationBtn) {
                 timeout: 10000,
                 maximumAge: 0
             }
-const location = document.getElementById("locationLink").value;
-
-if (location === "") {
-
-    const ok = confirm(
-`⚠️ لم يتم تحديد موقع التسليم.
-
-لا توجد مشكلة، يمكنك إرسال موقع التسليم الصحيح داخل محادثة واتساب بعد إرسال الطلب.
-
-هل ترغب في متابعة إرسال الطلب؟`
-    );
-
-    if (!ok) {
-        return;
-    }
-
-}
-        );
-
-    });
-
-}
