@@ -393,8 +393,7 @@ if (locationBtn) {
                 document.getElementById("locationLink").value =
                     "https://maps.google.com/?q=" + lat + "," + lng;
 
-                alert("✅ تم تحديد الموقع بنجاح");
-
+              document.getElementById("locationSuccess").style.display = "block";
             },
 
             function(error) {
