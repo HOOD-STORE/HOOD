@@ -334,13 +334,9 @@ PRODUCT INFO
 }
 
 .features{
-
     display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
+    grid-template-columns:1fr;
     gap:15px;
-
 }
 
 .features div{
@@ -362,17 +358,12 @@ PRICE CARD
 ========================================== */
 
 .price-card{
-
     background:#fff;
-
     padding:30px;
-
     border-radius:20px;
-
     box-shadow:0 10px 25px rgba(0,0,0,.08);
 
-    margin-bottom:25px;
-
+    margin-top:40px;
 }
 .price-top{
 
