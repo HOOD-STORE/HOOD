@@ -1428,3 +1428,9 @@ box-shadow:0 18px 40px rgba(0,0,0,.15);
 }
 
 }
+#getLocation{
+    margin-top:25px;
+    background:#f5f5f5;
+    color:#333;
+    border:1px solid #ddd;
+}
