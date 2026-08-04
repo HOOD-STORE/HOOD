@@ -315,50 +315,42 @@ section.style.transition="1s";
 observer.observe(section);
 
 });
-
 const form = document.getElementById("orderForm");
 
-if(form){
+if (form) {
 
-form.addEventListener("submit", function(e){
+    form.addEventListener("submit", function(e){
 
-e.preventDefault();
-    const location = document.getElementById("locationLink").value;
+        e.preventDefault();
 
-if (location === "") {
+        const location = document.getElementById("locationLink").value;
 
-    const ok = confirm(
+        if(location === ""){
+
+            const ok = confirm(
 `⚠️ لم يتم تحديد موقع التسليم.
 
 لا توجد مشكلة، يمكنك إرسال موقع التسليم الصحيح داخل محادثة واتساب بعد إرسال الطلب.
 
 هل ترغب في متابعة إرسال الطلب؟`
-    );
+            );
 
-    if (!ok) {
-        return;
-    }
+            if(!ok){
+                return;
+            }
+        }
 
-}
-        );
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const city = document.getElementById("city").value;
+        const size = document.getElementById("size").value;
+        const color = document.getElementById("color").value;
+        const qty = document.getElementById("qty").value;
+        const notes = document.getElementById("notes").value;
 
-    });
+        const product = "بخاخ";
 
-}
-
-
-const name = document.getElementById("name").value;
-const phone = document.getElementById("phone").value;
-const city = document.getElementById("city").value;
-const size = document.getElementById("size").value;
-const color = document.getElementById("color").value;
-const qty = document.getElementById("qty").value;
-const notes = document.getElementById("notes").value;
-    const location = document.getElementById("locationLink").value;
-
-const product = "بخاخ";
-
-const message =
+        const message =
 `طلب جديد
 
 المنتج: ${product}
@@ -377,17 +369,19 @@ const message =
 
 ملاحظات:
 ${notes}
+
 موقع العميل:
-${location}
+${location || "سيتم إرساله داخل المحادثة"}
+
 رابط المنتج:
 ${window.location.href}`;
 
-window.open(
-"https://wa.me/966580923866?text=" + encodeURIComponent(message),
-"_blank"
-);
+        window.open(
+            "https://wa.me/966580923866?text=" + encodeURIComponent(message),
+            "_blank"
+        );
 
-});
+    });
 
 }
 
@@ -432,3 +426,8 @@ if (locationBtn) {
                 timeout: 10000,
                 maximumAge: 0
             }
+        );
+
+    });
+
+}
