@@ -331,6 +331,7 @@ const size = document.getElementById("size").value;
 const color = document.getElementById("color").value;
 const qty = document.getElementById("qty").value;
 const notes = document.getElementById("notes").value;
+    const location = document.getElementById("locationLink").value;
 
 const product = "بنطال رياضي نسائي";
 
@@ -353,7 +354,8 @@ const message =
 
 ملاحظات:
 ${notes}
-
+موقع العميل:
+${location}
 رابط المنتج:
 ${window.location.href}`;
 
@@ -363,5 +365,52 @@ window.open(
 );
 
 });
+
+}
+
+/*==========================================
+GET CUSTOMER LOCATION
+==========================================*/
+
+const locationBtn = document.getElementById("getLocation");
+
+if (locationBtn) {
+
+    locationBtn.addEventListener("click", function () {
+
+        if (!navigator.geolocation) {
+            alert("متصفحك لا يدعم تحديد الموقع.");
+            return;
+        }
+
+        locationBtn.innerHTML = "⏳ جاري تحديد الموقع...";
+
+        navigator.geolocation.getCurrentPosition(
+
+            function (position) {
+
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+                const map =
+                    "https://maps.google.com/?q=" + lat + "," + lng;
+
+                document.getElementById("locationLink").value = map;
+
+                locationBtn.innerHTML = "✅ تم تحديد الموقع";
+
+            },
+
+            function () {
+
+                alert("يرجى السماح بالوصول إلى الموقع.");
+
+                locationBtn.innerHTML = "📍 تحديد موقعي";
+
+            }
+
+        );
+
+    });
 
 }
