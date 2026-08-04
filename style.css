@@ -1493,3 +1493,11 @@ box-shadow:0 18px 40px rgba(0,0,0,.15);
     background:#25D366;
     color:#fff;
 }
+.location-note{
+    margin-top:10px;
+    margin-bottom:15px;
+    color:#666;
+    font-size:14px;
+    text-align:center;
+    line-height:1.7;
+}
