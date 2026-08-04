@@ -333,7 +333,7 @@ const qty = document.getElementById("qty").value;
 const notes = document.getElementById("notes").value;
     const location = document.getElementById("locationLink").value;
 
-const product = "بنطال رياضي نسائي";
+const product = "بخاخ";
 
 const message =
 `طلب جديد
